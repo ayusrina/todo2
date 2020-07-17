@@ -2,9 +2,9 @@ package main
 
 import (
 	"log"
-	//"time"
+	"time"
 	"github.com/ayusrina/todo2/storage"
-	//"github.com/ayusrina/todo2/model"
+	"github.com/ayusrina/todo2/model"
 
 )
 
@@ -13,15 +13,15 @@ func main() {
 	var memStore = storage.GetStorage(storage.StorageTypeDatabase)
 
 	//create
-	// if err := memStore.Create(model.Todo{
-	// 	ID: 	1,
-	// 	Title: 	"first",
-	// 	Description: "First Todo",
-	// 	CreatedAt: 	time.Now(),
+	if err := memStore.Create(model.Todo{
+		ID: 	1,
+		Title: 	"first",
+		Description: "First Todo",
+		CreatedAt: 	time.Now(),
 	
-	// }); err != nil {
-	// 	log.Fatal(err)
-	// }
+	}); err != nil {
+		log.Fatal(err)
+	}
 
 	// if err := memStore.Create(model.Todo{
 	// 	ID: 	2,

@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+    app:
+        image: azizah/golang:v1.0
+        volumes:
+          - .:$GOPATH/src/github.com/ayusrina/todo2
+        working_dir: $GOPATH/src/github.com/ayusrina/todo2
+        command: go run main.go
+        # environment: 
+        #   - CGO_ENABLED=0 
+        #   - GO111MODULE=off
+    postgres:
+        image: postgres:12.3-alpine
+        volumes:
+        - db_data:/var/lib/mysql
+        ports:
+            - 5433:5432
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: db
+
+volumes:
+    db_data: {}

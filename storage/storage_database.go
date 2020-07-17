@@ -13,7 +13,7 @@ type Database struct{}
 
 func Connection() (db *sql.DB, err error) {
 	// open koneksi postgres nya
-	db, err = sql.Open("postgres", "host=127.0.0.1 port=5432 user=postgres " + "password=password dbname=db sslmode=disable")
+	db, err = sql.Open("postgres", "host=postgres port=5432 user=postgres " + "password=password dbname=db sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,6 +29,7 @@ func (o Database) Create(obj model.Todo) error{
 	db, _ := Connection()
 	// execute query insert
 	// $ --> cara define variable di postgres
+	// _, err := db.Exec("CREATE TABLE tododb (id int, title text, description text, created timestamp) ")
 	_, err := db.Exec("INSERT INTO tododb (id, title, description, created) VALUES " +
 	"($1,$2,$3,$4);", obj.ID, obj.Title, obj.Description, time.Now())
 
